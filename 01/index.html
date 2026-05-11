@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도 역사 연표 - 아름다운 우리 땅</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #e2e8f0;
+            z-index: 0;
+        }
+
+        .timeline-card {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .timeline-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+            .timeline-card-container {
+                padding-left: 50px !important;
+                width: 100% !important;
+                text-align: left !important;
+            }
+            .timeline-dot {
+                left: 20px !important;
+            }
+        }
+
+        .category-pill {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .category-pill:hover {
+            transform: scale(1.05);
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542640244-7e672d6cef21?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="h-80 flex flex-col items-center justify-center text-white text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 shadow-sm">아름다운 우리 땅, 독도 역사 연표</h1>
+        <p class="text-lg md:text-xl font-light max-w-2xl">지질학적 탄생부터 오늘날까지, 독도가 걸어온 명백한 주권의 기록을 확인하세요.</p>
+    </header>
+
+    <!-- Navigation / Categories -->
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md shadow-md z-50 py-4">
+        <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-center items-center gap-4">
+            <!-- Home Button Added -->
+            <a href="../index.html" class="px-6 py-2 bg-gray-800 text-white rounded-full font-medium category-pill flex items-center">
+                <i class="fas fa-home mr-2"></i> 홈
+            </a>
+            <div class="h-6 w-px bg-gray-300 mx-2 hidden md:block"></div>
+            <button onclick="scrollToSection('ancient')" class="px-6 py-2 bg-blue-600 text-white rounded-full font-medium category-pill">고대 및 조선</button>
+            <button onclick="scrollToSection('modern')" class="px-6 py-2 bg-indigo-600 text-white rounded-full font-medium category-pill">근대 및 일제침탈기</button>
+            <button onclick="scrollToSection('contemporary')" class="px-6 py-2 bg-emerald-600 text-white rounded-full font-medium category-pill">현대</button>
+        </div>
+    </nav>
+
+    <!-- Timeline Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12 relative">
+        <div class="timeline-line"></div>
+
+        <!-- Ancient & Joseon Section -->
+        <section id="ancient" class="mb-20">
+            <h2 class="text-3xl font-bold text-blue-700 text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-landmark mr-3"></i> 고대 및 조선 시대
+            </h2>
+            
+            <div id="ancient-timeline"></div>
+        </section>
+
+        <!-- Modern Section -->
+        <section id="modern" class="mb-20">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-history mr-3"></i> 근대 및 일제 침탈기
+            </h2>
+            
+            <div id="modern-timeline"></div>
+        </section>
+
+        <!-- Contemporary Section -->
+        <section id="contemporary" class="mb-20">
+            <h2 class="text-3xl font-bold text-emerald-700 text-center mb-12 flex items-center justify-center">
+                <i class="fas fa-flag mr-3"></i> 현대
+            </h2>
+            
+            <div id="contemporary-timeline"></div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 text-center">
+        <p class="mb-4">"독도는 대한민국의 고유 영토입니다."</p>
+        <div class="flex justify-center space-x-6 text-2xl mb-8">
+            <i class="fas fa-anchor text-blue-400"></i>
+            <i class="fas fa-mountain text-emerald-400"></i>
+            <i class="fas fa-water text-blue-300"></i>
+        </div>
+        <p class="text-gray-500 text-sm">제공된 역사적 자료를 바탕으로 재구성되었습니다.</p>
+    </footer>
+
+    <script>
+        const historyData = [
+            // 고대 및 조선
+            { 
+                category: 'ancient',
+                year: '약 460만~250만 년 전', 
+                title: '독도의 형성', 
+                desc: '화산 활동으로 인해 독도가 형성되었습니다. 울릉도(약 250만 년 전)와 제주도(약 120만 년 전)보다 훨씬 이른 시기입니다.',
+                icon: 'fa-volcano'
+            },
+            { 
+                category: 'ancient',
+                year: '1454년', 
+                title: '세종실록지리지', 
+                desc: '우산(독도)과 무릉(울릉도) 두 섬이 울진현 정동쪽 바다에 있으며, 날씨가 맑으면 서로 바라볼 수 있다는 기록이 실렸습니다.',
+                icon: 'fa-book'
+            },
+            { 
+                category: 'ancient',
+                year: '1481년', 
+                title: '팔도총도 제작', 
+                desc: '울릉도와 우산도(독도) 두 개의 섬이 그려졌으며, 당시 두 섬의 존재를 분명히 인지하고 있었음을 보여줍니다.',
+                icon: 'fa-map'
+            },
+            { 
+                category: 'ancient',
+                year: '1667년', 
+                title: '은주시청합기 (일본 사료)', 
+                desc: '일본의 서쪽 경계를 오키섬으로 규정하며 독도와 울릉도가 조선의 땅임을 분명히 하였습니다.',
+                icon: 'fa-scroll'
+            },
+            { 
+                category: 'ancient',
+                year: '1693년', 
+                title: '1차 안용복 사건', 
+                desc: '울릉도에서 어로 작업 중 일본으로 납치된 안용복은 울릉도와 독도가 조선 땅임을 주장하고 강력히 항의했습니다.',
+                icon: 'fa-person-military-pointing'
+            },
+            { 
+                category: 'ancient',
+                year: '1696년 1월', 
+                title: '울릉도 도해 금지령', 
+                desc: '일본 막부는 울릉도와 독도가 조선의 영토임을 인정하고 도해 금지령을 내렸습니다.',
+                icon: 'fa-ban'
+            },
+            { 
+                category: 'ancient',
+                year: '1785년', 
+                title: '삼국접양지도 (하야시 시헤이)', 
+                desc: '울릉도와 독도를 조선과 같은 황색으로 칠하고 "조선의 것"이라고 명시했습니다.',
+                icon: 'fa-map-marked-alt'
+            },
+            
+            // 근대
+            { 
+                category: 'modern',
+                year: '1877년', 
+                title: '태정관 지령', 
+                desc: '일본 최고 행정기관인 태정관이 "울릉도와 독도는 일본과 관계가 없다"는 지령을 내무성에 하달했습니다.',
+                icon: 'fa-stamp'
+            },
+            { 
+                category: 'modern',
+                year: '1900년 10월 25일', 
+                title: '대한제국 칙령 제41호', 
+                desc: '독도(석도)를 울도군 관할 구역에 공식적으로 포함하여 전 세계에 주권을 선포했습니다.',
+                icon: 'fa-file-signature'
+            },
+            { 
+                category: 'modern',
+                year: '1905년 2월 22일', 
+                title: '시마네현 고시 제40호', 
+                desc: '일본이 독도를 "다케시마"로 명명하고 시마네현 소속으로 편입하려 시도한 영토 주권 침탈 행위입니다.',
+                icon: 'fa-triangle-exclamation'
+            },
+
+            // 현대
+            { 
+                category: 'contemporary',
+                year: '1946년 1월 29일', 
+                title: 'SCAPIN 제677호', 
+                desc: '연합군 최고사령관 지령에 의해 독도가 일본의 통치 및 행정 범위에서 완전히 제외되었습니다.',
+                icon: 'fa-check-double'
+            },
+            { 
+                category: 'contemporary',
+                year: '1952년 1월 18일', 
+                title: '이승만 라인(평화선) 선포', 
+                desc: '대한민국 정부는 평화선을 선포하여 독도를 포함한 해역이 대한민국의 관할임을 분명히 했습니다.',
+                icon: 'fa-water'
+            },
+            { 
+                category: 'contemporary',
+                year: '1953년', 
+                title: '독도경비대 활동 시작', 
+                desc: '독도의용수비대의 활동을 이어받아 울릉경찰서 독도순라반이 상시 주둔을 시작했습니다.',
+                icon: 'fa-shield-halved'
+            },
+            { 
+                category: 'contemporary',
+                year: '1981년', 
+                title: '최초 거주민 최종덕 씨', 
+                desc: '최종덕 씨가 독도로 주민등록을 이전하며 독도의 실효적 지배를 보여주는 상징적인 거주가 시작되었습니다.',
+                icon: 'fa-house-user'
+            },
+            { 
+                category: 'contemporary',
+                year: '2006년 4월 25일', 
+                title: '노무현 대통령 특별담화', 
+                desc: '독도 문제에 관한 대국민 특별담화를 통해 독도 영유권의 정당성을 세계에 알렸습니다.',
+                icon: 'fa-microphone-lines'
+            }
+        ];
+
+        function renderTimeline() {
+            historyData.forEach((item, index) => {
+                const container = document.getElementById(`${item.category}-timeline`);
+                const isLeft = index % 2 === 0;
+
+                const cardHtml = `
+                    <div class="timeline-card-container mb-12 flex flex-col md:flex-row items-center justify-between w-full relative">
+                        <div class="timeline-dot absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-white border-4 border-blue-500 z-10 hidden md:block"></div>
+                        
+                        <div class="timeline-card w-full md:w-[45%] bg-white p-6 rounded-xl shadow-lg border-l-4 ${getBorderColor(item.category)} ${isLeft ? 'md:ml-auto md:text-left' : 'md:mr-auto md:text-right'}" style="text-align: inherit;">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 ${getBadgeColor(item.category)} text-white">${item.year}</span>
+                            <div class="flex items-center mb-2 ${isLeft ? 'justify-start' : 'md:justify-end justify-start'}">
+                                <i class="fas ${item.icon} text-xl mr-2 text-gray-600"></i>
+                                <h3 class="text-xl font-bold text-gray-800">${item.title}</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">${item.desc}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        function getBorderColor(cat) {
+            if (cat === 'ancient') return 'border-blue-500';
+            if (cat === 'modern') return 'border-indigo-500';
+            return 'border-emerald-500';
+        }
+
+        function getBadgeColor(cat) {
+            if (cat === 'ancient') return 'bg-blue-500';
+            if (cat === 'modern') return 'bg-indigo-500';
+            return 'bg-emerald-500';
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Animation on scroll
+        function handleScroll() {
+            const cards = document.querySelectorAll('.timeline-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    card.classList.add('show');
+                }
+            });
+        }
+
+        window.onload = () => {
+            renderTimeline();
+            handleScroll();
+            window.addEventListener('scroll', handleScroll);
+        };
+    </script>
+</body>
+</html>
