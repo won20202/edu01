@@ -112,8 +112,8 @@
 </head>
 <body class="text-slate-800">
 
-    <!-- Header Section -->
-    <header class="gradient-header text-white pt-24 pb-48 px-6 text-center">
+    <!-- Header Section: Adjusted padding to move content up -->
+    <header class="gradient-header text-white pt-16 pb-40 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">
                 독도 인근 해역 자원 및<br><span class="text-blue-200">경제적 잠재력 평가서</span>
@@ -129,14 +129,14 @@
         </div>
     </header>
 
-    <!-- Sticky Navigation -->
+    <!-- Sticky Navigation: Kept at top 0 but layout above is tighter -->
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-md">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="text-blue-900 font-bold tracking-tighter text-lg">
+        <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="text-blue-900 font-bold tracking-tighter text-base">
                 DOKDO REPORT 2024
             </div>
             
-            <div class="flex gap-6 md:gap-10 text-sm font-semibold overflow-x-auto no-scrollbar">
+            <div class="flex gap-5 md:gap-8 text-xs font-semibold overflow-x-auto no-scrollbar uppercase tracking-wider">
                 <a href="#intro" class="nav-link text-slate-600 hover:text-blue-600">지리적 가치</a>
                 <a href="#energy" class="nav-link text-slate-600 hover:text-blue-600">에너지 자원</a>
                 <a href="#ocean" class="nav-link text-slate-600 hover:text-blue-600">수산 및 지질</a>
@@ -145,38 +145,38 @@
         </div>
     </nav>
 
-    <!-- Main Content Area: Increased margin and padding to avoid overlap -->
-    <main class="max-w-6xl mx-auto px-6 relative z-10 -mt-16 pb-20">
+    <!-- Main Content Area: Increased top padding and margin to push buttons down -->
+    <main class="max-w-6xl mx-auto px-6 relative z-10 -mt-12 pb-20">
         
-        <!-- Navigation Buttons: Moved further down from the nav bar -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-32 pt-12 animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="./01/index.html" class="flex items-center justify-between p-8 bg-blue-600 text-white rounded-3xl shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-2">
-                <div class="flex items-center gap-5">
-                    <div class="p-4 bg-white/20 rounded-2xl">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <!-- Navigation Buttons: Smaller size and more top margin -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-32 mt-24 animate__animated animate__fadeInUp animate__delay-1s">
+            <a href="./01/index.html" class="flex items-center justify-between p-6 bg-blue-600 text-white rounded-2xl shadow-xl hover:bg-blue-700 transition transform hover:-translate-y-1">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-white/20 rounded-xl">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
                     <div>
-                        <span class="block text-xs uppercase tracking-widest opacity-70 mb-1">History Timeline</span>
-                        <span class="text-2xl font-bold">독도 연표</span>
+                        <span class="block text-[10px] uppercase tracking-widest opacity-70 mb-0.5">History Timeline</span>
+                        <span class="text-xl font-bold">독도 연표</span>
                     </div>
                 </div>
-                <div class="bg-white/10 p-2 rounded-full">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <div class="bg-white/10 p-1.5 rounded-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </div>
             </a>
 
-            <a href="./02/02.html" class="flex items-center justify-between p-8 bg-white border-2 border-blue-600 text-blue-600 rounded-3xl shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-2">
-                <div class="flex items-center gap-5">
-                    <div class="p-4 bg-blue-50 rounded-2xl">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <a href="./02/02.html" class="flex items-center justify-between p-6 bg-white border-2 border-blue-600 text-blue-600 rounded-2xl shadow-xl hover:bg-slate-50 transition transform hover:-translate-y-1">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 bg-blue-50 rounded-xl">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
                     <div>
-                        <span class="block text-xs uppercase tracking-widest text-slate-400 mb-1">Terminology</span>
-                        <span class="text-2xl font-bold">독도 용어</span>
+                        <span class="block text-[10px] uppercase tracking-widest text-slate-400 mb-0.5">Terminology</span>
+                        <span class="text-xl font-bold">독도 용어</span>
                     </div>
                 </div>
-                <div class="bg-blue-600/10 p-2 rounded-full">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <div class="bg-blue-600/10 p-1.5 rounded-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </div>
             </a>
         </div>
