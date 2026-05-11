@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>독도 인근 해역 해양 자원 및 경제적 잠재력 평가서</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
@@ -46,6 +45,43 @@
             transform: translateY(-3px);
             box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
         }
+
+        /* Vanilla JS Chart Styles */
+        .chart-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+        .chart-bar {
+            flex: 1;
+            background: #3b82f6;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: height 1s ease-out;
+            height: 0;
+        }
+        .chart-label {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
+        .chart-value {
+            position: absolute;
+            top: -1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -82,7 +118,7 @@
 
     <main class="max-w-6xl mx-auto px-6 py-12">
 
-        <!-- External Navigation Buttons (Added Area) -->
+        <!-- External Navigation Buttons -->
         <div class="flex justify-center gap-6 mb-16 animate__animated animate__fadeIn">
             <a href="./01/index.html" class="external-btn group flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-blue-200">
                 <svg class="w-6 h-6 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,8 +191,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="flex-1 w-full bg-white/5 p-4 rounded-xl h-64">
-                            <canvas id="energyChart"></canvas>
+                        <div class="flex-1 w-full bg-white/5 p-12 rounded-xl h-64">
+                            <!-- Custom Vanilla JS Bar Chart -->
+                            <div id="vanillaChart" class="chart-container">
+                                <!-- Bars will be injected by JavaScript -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -250,7 +289,7 @@
                     </div>
                 </div>
                 <div class="text-center pt-8">
-                    <button onclick="window.scrollTo(0,0)" class="px-10 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">
+                    <button id="scrollTopBtn" class="px-10 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">
                         상단으로 이동
                     </button>
                 </div>
@@ -265,39 +304,76 @@
     </footer>
 
     <script>
-        // Energy Resource Chart
-        const ctx = document.getElementById('energyChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['메탄 하이드레이트', '연간 가스 수입'],
-                datasets: [{
-                    label: '규모 비교',
-                    data: [100, 30],
-                    backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(71, 85, 105, 0.5)'],
-                    borderColor: ['#3b82f6', '#475569'],
-                    borderWidth: 1,
-                    borderRadius: 10
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: { color: '#94a3b8' },
-                        grid: { color: 'rgba(255,255,255,0.05)' }
-                    },
-                    x: {
-                        ticks: { color: '#94a3b8' },
-                        grid: { display: false }
-                    }
-                }
+        /**
+         * Vanilla JavaScript Implementation
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll to Top Functionality
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (scrollTopBtn) {
+                scrollTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
             }
+
+            // 2. Custom Vanilla JS Bar Chart Generation
+            const chartData = [
+                { label: '메탄 하이드레이트', value: 100, color: '#3b82f6' },
+                { label: '연간 가스 수입', value: 30, color: '#475569' }
+            ];
+
+            const chartContainer = document.getElementById('vanillaChart');
+            
+            if (chartContainer) {
+                chartData.forEach(item => {
+                    // Create bar element
+                    const bar = document.createElement('div');
+                    bar.className = 'chart-bar';
+                    bar.style.backgroundColor = item.color;
+                    
+                    // Create label
+                    const label = document.createElement('span');
+                    label.className = 'chart-label';
+                    label.innerText = item.label;
+                    
+                    // Create value text
+                    const value = document.createElement('span');
+                    value.className = 'chart-value';
+                    value.innerText = item.value + '%';
+                    
+                    bar.appendChild(label);
+                    bar.appendChild(value);
+                    chartContainer.appendChild(bar);
+
+                    // Trigger animation after a short delay
+                    setTimeout(() => {
+                        bar.style.height = item.value + '%';
+                    }, 200);
+                });
+            }
+
+            // 3. Simple Intersection Observer for scroll animations (Optional)
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         });
     </script>
 </body>
