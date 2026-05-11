@@ -95,12 +95,21 @@
             text-align: center;
             font-weight: 500;
         }
+
+        /* Hide scrollbar for nav links on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="text-slate-800">
 
     <!-- Header Section -->
-    <header class="gradient-header text-white pt-24 pb-32 px-6 text-center">
+    <header class="gradient-header text-white pt-24 pb-44 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 animate__animated animate__fadeInDown">
                 독도 인근 해역 자원 및<br><span class="text-blue-200">경제적 잠재력 평가서</span>
@@ -117,7 +126,7 @@
     </header>
 
     <!-- Sticky Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <span class="font-bold text-blue-800 hidden md:block">DOKDO REPORT 2024</span>
             <div class="flex gap-6 md:gap-10 text-sm font-semibold overflow-x-auto no-scrollbar">
@@ -129,34 +138,38 @@
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-6 -mt-16">
+    <main class="max-w-6xl mx-auto px-6 relative z-10 -mt-28">
         
-        <!-- Navigation Buttons to Other Pages -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20 animate__animated animate__fadeInUp">
-            <a href="./01/index.html" class="flex items-center justify-between p-6 bg-blue-600 text-white rounded-2xl shadow-xl hover:bg-blue-700 transition transform hover:-translate-y-1">
-                <div class="flex items-center gap-4">
-                    <div class="p-3 bg-white/20 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        <!-- Navigation Buttons to Other Pages - Fixed Visibility -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24 animate__animated animate__fadeInUp animate__delay-1s">
+            <a href="./01/index.html" class="flex items-center justify-between p-8 bg-blue-600 text-white rounded-3xl shadow-2xl hover:bg-blue-700 transition transform hover:-translate-y-2">
+                <div class="flex items-center gap-5">
+                    <div class="p-4 bg-white/20 rounded-2xl">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
                     <div>
-                        <span class="block text-xs opacity-80">History Timeline</span>
-                        <span class="text-xl font-bold">독도 연표 보기</span>
+                        <span class="block text-xs uppercase tracking-widest opacity-70 mb-1">History Timeline</span>
+                        <span class="text-2xl font-bold">독도 연표</span>
                     </div>
                 </div>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <div class="bg-white/10 p-2 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </div>
             </a>
 
-            <a href="./02/02.html" class="flex items-center justify-between p-6 bg-white border-2 border-blue-600 text-blue-600 rounded-2xl shadow-xl hover:bg-slate-50 transition transform hover:-translate-y-1">
-                <div class="flex items-center gap-4">
-                    <div class="p-3 bg-blue-50 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            <a href="./02/02.html" class="flex items-center justify-between p-8 bg-white border-2 border-blue-600 text-blue-600 rounded-3xl shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-2">
+                <div class="flex items-center gap-5">
+                    <div class="p-4 bg-blue-50 rounded-2xl">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400">Dictionary</span>
-                        <span class="text-xl font-bold">독도 용어 사전</span>
+                        <span class="block text-xs uppercase tracking-widest text-slate-400 mb-1">Terminology</span>
+                        <span class="text-2xl font-bold">독도 용어</span>
                     </div>
                 </div>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <div class="bg-blue-600/10 p-2 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </div>
             </a>
         </div>
 
@@ -182,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lg:w-1/2 w-full h-[400px] bg-slate-200 rounded-3xl overflow-hidden relative group">
+                    <div class="lg:w-1/2 w-full h-[400px] bg-slate-200 rounded-3xl overflow-hidden relative group shadow-inner">
                         <div class="absolute inset-0 bg-blue-100 flex flex-col items-center justify-center p-10 text-center">
                             <svg class="w-20 h-20 text-blue-500 mb-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                             <h4 class="text-xl font-bold text-blue-900 mb-2">해양 영토 가시화</h4>
@@ -330,7 +343,7 @@
 
             // 2. Intersection Observer for trigger on scroll
             const observerOptions = {
-                threshold: 0.3
+                threshold: 0.1
             };
 
             const sectionObserver = new IntersectionObserver((entries) => {
@@ -341,6 +354,7 @@
                         }
                         // Add fade-in classes to elements inside the section
                         entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                        sectionObserver.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -364,7 +378,10 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const target = document.querySelector(targetId);
                     if (target) {
                         target.scrollIntoView({
                             behavior: 'smooth'
